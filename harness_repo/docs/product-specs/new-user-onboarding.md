@@ -2,12 +2,14 @@
 
 ## Username policy
 
-注册时用户名会被标准化：
+注册时用户名会被 canonicalize：
 
 - trim whitespace
 - lowercase
+- replace one or more spaces / hyphens with a single underscore
+- trim leading / trailing underscores after separator normalization
 
-标准化后的用户名必须满足：
+canonical username 必须满足：
 
 - 长度 3-20
 - 仅允许 a-z, 0-9, underscore
@@ -18,12 +20,25 @@
 - root
 - system
 
-重复用户名判断以标准化后的结果为准。
+以下前缀同样保留，不可注册：
+
+- admin_
+- root_
+- system_
+
+重复用户名判断以 canonical username 为准。
 
 例如：
 
-- ` Alice `
-- `alice`
-- `ALICE`
+- ` Alice-Smith `
+- `alice_smith`
+- `ALICE   SMITH`
 
 这三者应视为同一个用户名。
+
+再例如：
+
+- ` Team --- Lead `
+- `team_lead`
+
+这两者也应视为同一个用户名。

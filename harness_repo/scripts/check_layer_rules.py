@@ -9,8 +9,13 @@ SERVICES_DIR = ROOT / "src" / "services"
 FORBIDDEN_SNIPPETS = (
     ".strip(",
     ".lower(",
+    ".replace(",
     "re.compile(",
+    "re.sub(",
     "RESERVED_USERNAMES",
+    "admin_",
+    "root_",
+    "system_",
     "USERNAME_PATTERN",
 )
 

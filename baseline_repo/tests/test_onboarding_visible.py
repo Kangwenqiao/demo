@@ -18,10 +18,10 @@ def test_registers_plain_username() -> None:
     assert repo.list_usernames() == ["alice_01"]
 
 
-def test_normalizes_username_before_storing() -> None:
+def test_replaces_hyphenated_username_with_underscore() -> None:
     api, repo = build_api()
 
-    response = api.register({"username": " Alice "})
+    response = api.register({"username": " Alice-Smith "})
 
-    assert response == {"status": "ok", "username": "alice"}
-    assert repo.list_usernames() == ["alice"]
+    assert response == {"status": "ok", "username": "alice_smith"}
+    assert repo.list_usernames() == ["alice_smith"]
